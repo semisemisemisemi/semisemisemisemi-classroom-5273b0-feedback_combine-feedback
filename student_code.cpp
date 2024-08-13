@@ -9,7 +9,21 @@ vector<int> distance;
 int n; // number of nodes
 
 void bfs(int start) {
-    // 여기에 코드를 작성하세요.
+    queue<int> q;
+    visited[start] = true;
+    distance[start] = 0;
+    q.push(start);
+
+    while (!q.empty()) {
+        int current = q.front(); q.pop();
+        for (int i : graph[current]) {
+            if (!visited[i]) {
+                visited[i] = true;
+                distance[i] = distance[current] + 1;
+                q.push(i);
+            }
+        }
+    }
 }
 
 int main() {
